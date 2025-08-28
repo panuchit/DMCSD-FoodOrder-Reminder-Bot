@@ -301,7 +301,7 @@ cron.schedule('0 15 * * 5', () => {
 
 / Add this TEMPORARY test schedule (in addition to existing ones)
 cron.schedule('55 17 * * *', () => {  // 6 PM every day
-  console.log('🧪 TEST - 4:55 PM - Sending food order reminder...');
+  console.log('🧪 TEST - 4:58 PM - Sending food order reminder...');
   sendFoodOrderReminder();
 }, {
   timezone: "America/Los_Angeles"
