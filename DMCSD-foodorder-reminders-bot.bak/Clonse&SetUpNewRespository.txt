@@ -1,3 +1,0 @@
-# Clone your new repository
-git clone https://github.com/panuchit/dmcsd-food-reminder-bot.git
-cd dmcsd-food-reminder-bot
