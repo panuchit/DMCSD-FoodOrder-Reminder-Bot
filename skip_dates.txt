@@ -1,0 +1,54 @@
+# Skip dates for Food Order Reminder Bot
+# Format: YYYY-MM-DD (one per line)
+# Lines starting with # are comments and will be ignored
+
+# ========== SINGLE DATES ==========
+# Holiday examples (replace with actual dates you want to skip)
+#2025-08-23  # Test Skip Date
+
+# ========== DATE RANGES ==========
+# Use "range" or "Range" keyword for date ranges
+# Supported formats:
+# range YYYY-MM-DD to YYYY-MM-DD
+# range YYYY-MM-DD - YYYY-MM-DD  
+# range YYYY-MM-DD through YYYY-MM-DD
+# Range MM/DD/YYYY to MM/DD/YYYY
+
+# Examples:
+# range 2025-08-23 to 2025-08-24 # Test skip date range  
+
+# Using US date format in ranges:
+#range 12/30/2024 to 01/03/2025  # New Year's week
+
+# Company holidays or special periods
+#range 2025-05-26 - 2025-05-30   # Memorial Day week
+# Range 2025-11-25 through 2025-11-29  # Thanksgiving week
+
+# ========== MIXED FORMAT EXAMPLES ==========
+# You can mix single dates and ranges:
+#2025-02-14      # Valentine's Day (single date)
+#range 2025-04-14 to 2025-04-18  # Easter week (range)
+#2025-04-21      # Single day after Easter (single date)
+
+# ========== USAGE NOTES ==========
+# 1. For single dates: Use YYYY-MM-DD format (preferred) or MM/DD/YYYY
+# 2. For ranges: Start line with "range" or "Range" keyword
+# 3. Range separators: "to", "-", or "through"
+# 4. One date or range per line
+# 5. Use # for comments
+# 6. Empty lines are ignored
+# 7. Case insensitive for "range" keyword
+
+# ========== EXAMPLES FOR COMMON SCENARIOS ==========
+
+# Skip entire weeks:
+# range 2025-08-11 to 2025-08-15  # Company retreat week
+# range 2025-12-22 to 2025-12-29  # Christmas/New Year break
+
+# Skip long weekends:
+# range 2025-05-24 - 2025-05-26   # Memorial Day weekend
+# range 2025-09-01 through 2025-09-03  # Labor Day weekend
+
+# Skip individual days:
+# 2025-06-19  # Juneteenth
+# 2025-10-31  # Halloween office party
