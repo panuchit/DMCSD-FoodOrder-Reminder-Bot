@@ -299,7 +299,13 @@ cron.schedule('0 15 * * 5', () => {
   timezone: "America/Los_Angeles"
 });
 
-
+/ Add this TEMPORARY test schedule (in addition to existing ones)
+cron.schedule('55 17 * * *', () => {  // 6 PM every day
+  console.log('🧪 TEST - 4:55 PM - Sending food order reminder...');
+  sendFoodOrderReminder();
+}, {
+  timezone: "America/Los_Angeles"
+});
 
 // Manual test function
 async function sendTestMessage() {
