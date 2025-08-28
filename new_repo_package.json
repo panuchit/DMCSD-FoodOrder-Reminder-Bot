@@ -1,0 +1,25 @@
+{
+  "name": "dmcsd-food-reminder-bot",
+  "version": "1.0.0",
+  "description": "LINE bot for San Diego center food order reminders - Thursday and Friday 3 PM",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "dev": "nodemon bot.js",
+    "test": "node test.js"
+  },
+  "keywords": ["line", "bot", "food-reminder", "dhammakaya", "san-diego"],
+  "author": "Dhammakaya Meditation Center San Diego",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "@line/bot-sdk": "^7.5.2",
+    "node-cron": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
