@@ -13,6 +13,7 @@ const config = {
   channelSecret: process.env.CHANNEL_SECRET || '0aa9d4d7cda0866949b910ffae506b53'
 };
 
+
 const client = new line.Client(config);
 
 // Your Group ID (replace with the one you got!)
@@ -23,6 +24,20 @@ const SKIP_DATES_FILE_ID = '1qomp6_zAamOxyx8hWPiIRb84RB2wQjk0';
 
 // Local backup file for skip dates
 const LOCAL_SKIP_FILE = 'skip_dates.txt';
+
+// Add this RIGHT AFTER your config object (around line 10-15)
+console.log('🔍 DEBUG: Environment variables check:');
+console.log('CHANNEL_ACCESS_TOKEN length:', process.env.CHANNEL_ACCESS_TOKEN?.length || 'undefined');
+console.log('CHANNEL_ACCESS_TOKEN first 20 chars:', process.env.CHANNEL_ACCESS_TOKEN?.substring(0, 20) || 'undefined');
+console.log('CHANNEL_ACCESS_TOKEN last 20 chars:', process.env.CHANNEL_ACCESS_TOKEN?.substring(-20) || 'undefined');
+console.log('CHANNEL_SECRET length:', process.env.CHANNEL_SECRET?.length || 'undefined');
+console.log('GROUP_ID:', process.env.GROUP_ID || 'undefined');
+
+// Check for invisible characters
+const token = process.env.CHANNEL_ACCESS_TOKEN || '';
+console.log('Token has quotes:', token.includes('"') || token.includes("'"));
+console.log('Token has spaces at start/end:', token.trim() !== token);
+console.log('Token has newlines:', token.includes('\n') || token.includes('\r'));
 
 // Cache for skip dates (to avoid frequent API calls)
 let skipDatesCache = new Set();
@@ -300,8 +315,8 @@ cron.schedule('0 15 * * 5', () => {
 });
 
 // Add this TEMPORARY test schedule (in addition to existing ones)
-cron.schedule('30 17 * * *', () => {  // 6 PM every day
-  console.log('🧪 TEST - 17:30 PM - Sending food order reminder...');
+cron.schedule('30 20 * * *', () => {  // 6 PM every day
+  console.log('🧪 TEST - 20:30 PM - Sending food order reminder...');
   sendFoodOrderReminder();
 }, {
   timezone: "America/Los_Angeles"
