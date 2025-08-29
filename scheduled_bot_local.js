@@ -295,35 +295,53 @@ async function sendFoodOrderReminder() {
   }
 }
 
-// Schedule Thursday 3 PM (LA Time)
-cron.schedule('0 15 * * 4', () => {
-  console.log('🍽️ Thursday 3 PM - Sending food order reminder...');
-  sendFoodOrderReminder();
-}, {
-  timezone: "America/Los_Angeles"
-});
+// Thursday 1 PM (with debug)
+console.log('🔧 Setting up Thursday 1 PM schedule...');
+try {
+  cron.schedule('0 13 * * 4', () => {
+    console.log('🍽️ Thursday 1 PM - Sending food order reminder...');
+    sendFoodOrderReminder();
+  }, {
+    timezone: "America/Los_Angeles"
+  });
+  console.log('✅ Thursday schedule created successfully');
+} catch (error) {
+  console.error('❌ Error creating Thursday schedule:', error.message);
+}
 
-// Schedule Friday 3 PM (LA Time)
-cron.schedule('0 15 * * 5', () => {
-  console.log('🍽️ Friday 3 PM - Sending food order reminder...');
-  sendFoodOrderReminder();
-}, {
-  timezone: "America/Los_Angeles"
-});
+// Friday 1 PM (with debug)  
+console.log('🔧 Setting up Friday 1 PM schedule...');
+try {
+  cron.schedule('0 13 * * 5', () => {
+    console.log('🍽️ Friday 1 PM - Sending food order reminder...');
+    sendFoodOrderReminder();
+  }, {
+    timezone: "America/Los_Angeles"
+  });
+  console.log('✅ Friday schedule created successfully');
+} catch (error) {
+  console.error('❌ Error creating Friday schedule:', error.message);
+}
 
-// Add this TEMPORARY test schedule (in addition to existing ones)
-cron.schedule('30 21 * * *', () => {  // 21:30 PM every day
-  console.log('🧪 TEST - 21:30 PM - Sending food order reminder...');
-  sendFoodOrderReminder();
-}, {
-  timezone: "America/Los_Angeles"
-});
+// Test 9:50 PM (with debug)
+console.log('🔧 Setting up 9:30 PM test schedule...');
+try {
+  cron.schedule('50 21 * * *', () => {  // 9:30 PM = 21:30
+    console.log('🧪 TEST - 9:50 PM - Sending test food reminder...');
+    sendFoodOrderReminder();
+  }, {
+    timezone: "America/Los_Angeles"
+  });
+  console.log('✅ Test schedule created successfully');
+} catch (error) {
+  console.error('❌ Error creating test schedule:', error.message);
+}
 
 // Add this after all your cron schedules to confirm they're loaded
 console.log('\n📅 All Scheduled Messages:');
-console.log('   🍽️ Thursday 3:00 PM (LA Time) - Food order reminder');
-console.log('   🍽️ Friday 3:00 PM (LA Time) - Food order reminder');
-console.log('   🧪 9:30 PM (Every day) - Test food reminder');  // If you added this
+console.log('   🍽️ Thursday 1:00 PM (LA Time) - Food order reminder');
+console.log('   🍽️ Friday 1:00 PM (LA Time) - Food order reminder');
+console.log('   🧪 9:50 PM (Every day) - Test food reminder');  // If you added this
 console.log('🔍 Total cron jobs registered:', process._getActiveHandles().filter(h => h.constructor.name === 'Timeout').length);
 
 
@@ -339,7 +357,7 @@ ${skip ? '⏭️ (Would be skipped today due to skip list)' : '✅ (Would be sen
 
 สั่งอาหารจากร้านคุณแซม จากเมนู https://drive.google.com/file/u/0/d/17xXK5ReUxlbxtryTTpBtgaFnZSRJBsrs/view สำหรับมื้อเพลวันพรุ่งนี้ ภายในวันนี้ครับ
 
-📅 Scheduled for: Thursday & Friday 3 PM (LA Time)
+📅 Scheduled for: Thursday & Friday 1 PM (LA Time)
 🎯 Group ID: ${GROUP_ID}
 📁 Skip dates loaded: ${skipDatesCache.size} dates`;
   
