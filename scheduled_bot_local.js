@@ -9,18 +9,15 @@ const app = express();
 
 // Configuration
 const config = {
-  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || 'LMo3ZmLIU5D60k5+T7EuTAwx5+2nMSL6PjP0flNDUIh0mxB0ON9B7Q2Ict/e5iTVx9bqq7UvjIl1wq3cNXKyewbHxrXghxmkhCfPWR3sMBhTldPwtAoErB2SgEVlhILZhHGoDf6Es8rgzBguWEpc2QdB04t89/1O/w1cDnyilFU=',
-  channelSecret: process.env.CHANNEL_SECRET || '0aa9d4d7cda0866949b910ffae506b53'
+  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
+  channelSecret: process.env.CHANNEL_SECRET
 };
-
 
 const client = new line.Client(config);
 
 // Your Group ID (replace with the one you got!)
-const GROUP_ID = 'C71b4a96977db997ae431e4c73720230f';
-
-// Google Drive file ID for skip dates (extract from your Google Drive share URL)
-const SKIP_DATES_FILE_ID = '1qomp6_zAamOxyx8hWPiIRb84RB2wQjk0';
+const GROUP_ID = process.env.GROUP_ID;
+const SKIP_DATES_FILE_ID = process.env.SKIP_DATES_FILE_ID;
 
 // Local backup file for skip dates
 const LOCAL_SKIP_FILE = 'skip_dates.txt';
