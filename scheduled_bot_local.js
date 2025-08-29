@@ -298,6 +298,13 @@ cron.schedule('0 13 * * 5', () => {
   timezone: "America/Los_Angeles"
 });
 
+// Schedule Friday 5:10 PM (LA Time)
+cron.schedule('10 17 * * 5', () => {
+  console.log('🍽️ Friday 5:10 PM - Sending food order reminder...');
+  sendFoodOrderReminder();
+}, {
+  timezone: "America/Los_Angeles"
+});
 
 // Manual test function
 async function sendTestMessage() {
