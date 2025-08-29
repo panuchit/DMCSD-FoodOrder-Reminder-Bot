@@ -312,12 +312,20 @@ cron.schedule('0 15 * * 5', () => {
 });
 
 // Add this TEMPORARY test schedule (in addition to existing ones)
-cron.schedule('30 20 * * *', () => {  // 6 PM every day
-  console.log('🧪 TEST - 20:30 PM - Sending food order reminder...');
+cron.schedule('30 21 * * *', () => {  // 21:30 PM every day
+  console.log('🧪 TEST - 21:30 PM - Sending food order reminder...');
   sendFoodOrderReminder();
 }, {
   timezone: "America/Los_Angeles"
 });
+
+// Add this after all your cron schedules to confirm they're loaded
+console.log('\n📅 All Scheduled Messages:');
+console.log('   🍽️ Thursday 3:00 PM (LA Time) - Food order reminder');
+console.log('   🍽️ Friday 3:00 PM (LA Time) - Food order reminder');
+console.log('   🧪 9:30 PM (Every day) - Test food reminder');  // If you added this
+console.log('🔍 Total cron jobs registered:', process._getActiveHandles().filter(h => h.constructor.name === 'Timeout').length);
+
 
 // Manual test function
 async function sendTestMessage() {
