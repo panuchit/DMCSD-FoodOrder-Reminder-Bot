@@ -22,19 +22,6 @@ const SKIP_DATES_FILE_ID = process.env.SKIP_DATES_FILE_ID;
 // Local backup file for skip dates
 const LOCAL_SKIP_FILE = 'skip_dates.txt';
 
-// Add this RIGHT AFTER your config object (around line 10-15)
-console.log('🔍 DEBUG: Environment variables check:');
-console.log('CHANNEL_ACCESS_TOKEN length:', process.env.CHANNEL_ACCESS_TOKEN?.length || 'undefined');
-console.log('CHANNEL_ACCESS_TOKEN first 20 chars:', process.env.CHANNEL_ACCESS_TOKEN?.substring(0, 20) || 'undefined');
-console.log('CHANNEL_ACCESS_TOKEN last 20 chars:', process.env.CHANNEL_ACCESS_TOKEN?.substring(-20) || 'undefined');
-console.log('CHANNEL_SECRET length:', process.env.CHANNEL_SECRET?.length || 'undefined');
-console.log('GROUP_ID:', process.env.GROUP_ID || 'undefined');
-
-// Check for invisible characters
-const token = process.env.CHANNEL_ACCESS_TOKEN || '';
-console.log('Token has quotes:', token.includes('"') || token.includes("'"));
-console.log('Token has spaces at start/end:', token.trim() !== token);
-console.log('Token has newlines:', token.includes('\n') || token.includes('\r'));
 
 // Cache for skip dates (to avoid frequent API calls)
 let skipDatesCache = new Set();
@@ -295,54 +282,21 @@ async function sendFoodOrderReminder() {
   }
 }
 
-// Thursday 1 PM (with debug)
-console.log('🔧 Setting up Thursday 1 PM schedule...');
-try {
-  cron.schedule('0 13 * * 4', () => {
-    console.log('🍽️ Thursday 1 PM - Sending food order reminder...');
-    sendFoodOrderReminder();
-  }, {
-    timezone: "America/Los_Angeles"
-  });
-  console.log('✅ Thursday schedule created successfully');
-} catch (error) {
-  console.error('❌ Error creating Thursday schedule:', error.message);
-}
+// Schedule Thursday 1 PM (LA Time)
+cron.schedule('0 13 * * 4', () => {
+  console.log('🍽️ Thursday 1 PM - Sending food order reminder...');
+  sendFoodOrderReminder();
+}, {
+  timezone: "America/Los_Angeles"
+});
 
-// Friday 1 PM (with debug)  
-console.log('🔧 Setting up Friday 1 PM schedule...');
-try {
-  cron.schedule('0 13 * * 5', () => {
-    console.log('🍽️ Friday 1 PM - Sending food order reminder...');
-    sendFoodOrderReminder();
-  }, {
-    timezone: "America/Los_Angeles"
-  });
-  console.log('✅ Friday schedule created successfully');
-} catch (error) {
-  console.error('❌ Error creating Friday schedule:', error.message);
-}
-
-// Test 9:50 PM (with debug)
-console.log('🔧 Setting up 9:30 PM test schedule...');
-try {
-  cron.schedule('50 21 * * *', () => {  // 9:30 PM = 21:30
-    console.log('🧪 TEST - 9:50 PM - Sending test food reminder...');
-    sendFoodOrderReminder();
-  }, {
-    timezone: "America/Los_Angeles"
-  });
-  console.log('✅ Test schedule created successfully');
-} catch (error) {
-  console.error('❌ Error creating test schedule:', error.message);
-}
-
-// Add this after all your cron schedules to confirm they're loaded
-console.log('\n📅 All Scheduled Messages:');
-console.log('   🍽️ Thursday 1:00 PM (LA Time) - Food order reminder');
-console.log('   🍽️ Friday 1:00 PM (LA Time) - Food order reminder');
-console.log('   🧪 9:50 PM (Every day) - Test food reminder');  // If you added this
-console.log('🔍 Total cron jobs registered:', process._getActiveHandles().filter(h => h.constructor.name === 'Timeout').length);
+// Schedule Friday 1 PM (LA Time)
+cron.schedule('0 13 * * 5', () => {
+  console.log('🍽️ Friday 1 PM - Sending food order reminder...');
+  sendFoodOrderReminder();
+}, {
+  timezone: "America/Los_Angeles"
+});
 
 
 // Manual test function
